@@ -26,7 +26,11 @@
 # STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 # THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 3.5)
+
+if(POLICY CMP0075)
+  cmake_policy(SET CMP0075 NEW)
+endif()
 
 project(unbound C)
 
@@ -219,7 +223,8 @@ if (WIN32)
   target_link_libraries(unbound
     PRIVATE
       iphlpapi
-      ws2_32)
+      ws2_32
+      crypt32)
 endif ()
 
 if (INSTALL_VENDORED_LIBUNBOUND)
