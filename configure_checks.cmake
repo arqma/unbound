@@ -47,7 +47,8 @@ check_include_file(ws2tcpip.h HAVE_WS2TCPIP_H)
 if (WIN32)
   set(CMAKE_REQUIRED_LIBRARIES
     iphlpapi
-    ws2_32)
+    ws2_32
+    crypt32)
 endif ()
 if (CMAKE_SYSTEM_NAME MATCHES "(SunOS|Solaris)")
   set(CMAKE_REQUIRED_LIBRARIES
@@ -194,7 +195,7 @@ check_include_file(openssl/ssl.h HAVE_OPENSSL_SSL_H)
 set(CMAKE_REQUIRED_LIBRARIES
   ${OPENSSL_LIBRARIES})
 if (WIN32 AND OPENSSL_VERSION STRGREATER "1.1.0")
-  set(CMAKE_REQUIRED_LIBRARIES "${CMAKE_REQUIRED_LIBRARIES};ws2_32")
+  set(CMAKE_REQUIRED_LIBRARIES "${CMAKE_REQUIRED_LIBRARIES};ws2_32;crypt32")
 endif()
 
 check_symbol_exists(NID_secp384r1 "openssl/evp.h" HAVE_DECL_NID_SECP384R1)
